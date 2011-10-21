@@ -1,0 +1,107 @@
+﻿@model MvcRemoteValidationSample.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Supplier_ID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Supplier_ID, (IEnumerable<SelectListItem>)ViewBag.SupplierSelectListItems, "Choose One..")
+            @Html.ValidationMessageFor(model => model.Supplier_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Category_ID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Category_ID, (IEnumerable<SelectListItem>)ViewBag.CategorieSelectListItems, "Choose One..")
+            @Html.ValidationMessageFor(model => model.Category_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Product_Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Product_Name)
+            @Html.ValidationMessageFor(model => model.Product_Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.English_Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.English_Name)
+            @Html.ValidationMessageFor(model => model.English_Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Quantity_Per_Unit)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Quantity_Per_Unit)
+            @Html.ValidationMessageFor(model => model.Quantity_Per_Unit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Unit_Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Unit_Price)
+            @Html.ValidationMessageFor(model => model.Unit_Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Units_In_Stock)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Units_In_Stock)
+            @Html.ValidationMessageFor(model => model.Units_In_Stock)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Units_On_Order)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Units_On_Order)
+            @Html.ValidationMessageFor(model => model.Units_On_Order)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Reorder_Level)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Reorder_Level)
+            @Html.ValidationMessageFor(model => model.Reorder_Level)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Discontinued)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Discontinued)
+            @Html.ValidationMessageFor(model => model.Discontinued)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

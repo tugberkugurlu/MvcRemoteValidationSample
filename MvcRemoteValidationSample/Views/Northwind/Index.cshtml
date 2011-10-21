@@ -1,0 +1,93 @@
+﻿@model IEnumerable<MvcRemoteValidationSample.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Product_ID
+        </th>
+        <th>
+            Supplier_ID
+        </th>
+        <th>
+            Category_ID
+        </th>
+        <th>
+            Product_Name
+        </th>
+        <th>
+            English_Name
+        </th>
+        <th>
+            Quantity_Per_Unit
+        </th>
+        <th>
+            Unit_Price
+        </th>
+        <th>
+            Units_In_Stock
+        </th>
+        <th>
+            Units_On_Order
+        </th>
+        <th>
+            Reorder_Level
+        </th>
+        <th>
+            Discontinued
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.English_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity_Per_Unit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unit_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Units_In_Stock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Units_On_Order)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reorder_Level)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discontinued)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
