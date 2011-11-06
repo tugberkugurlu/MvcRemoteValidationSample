@@ -158,6 +158,46 @@ namespace MvcRemoteValidationSample.Controllers
             return Json(user == null);
         }
 
+        #region _server side remote validation stuff
+
+        public ActionResult RegisterForServerSide() {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RegisterForServerSide(RegisterModel model) {
+
+            if (ModelState.IsValid) {
+
+                // Attempt to register the user
+                MembershipCreateStatus createStatus;
+                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+
+                if (createStatus == MembershipCreateStatus.Success)
+                {
+                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        public JsonResult doesUserNameExistGet(string term) {
+
+            var user = Membership.GetUser(term);
+
+            return Json(user == null, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
         #region Status Codes
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {

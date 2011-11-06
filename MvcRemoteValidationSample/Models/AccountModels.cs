@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
+using TugberkUg.MVC.Validation;
 
 namespace MvcRemoteValidationSample.Models
 {
@@ -47,6 +48,7 @@ namespace MvcRemoteValidationSample.Models
         [Required]
         [Display(Name = "User name")]
         [Remote("doesUserNameExist", "Account", HttpMethod = "POST", ErrorMessage = "User name already exists. Please enter a different user name.")]
+        [ServerSideRemote("Account", "doesUserNameExistGet")]
         public string UserName { get; set; }
 
         [Required]
@@ -65,4 +67,5 @@ namespace MvcRemoteValidationSample.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+    
 }
